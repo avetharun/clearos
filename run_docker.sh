@@ -1,0 +1,1 @@
+cmd.exe /k "docker run --name clearos_build --rm -it -v %cd%:/root/env clearos-buildenv&& exit && exit"
