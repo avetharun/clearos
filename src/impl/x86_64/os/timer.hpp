@@ -208,8 +208,7 @@ void halt(void)
 // Easiest way to do this.
 void srand_init() {
       timer_inc();
-	srand(time.minute + time.day * time.second / time.system_ticks_first); // Starting off, it should be initially random. 
-      srand(rand() / time.hour);
+	srand(time.minute + time.day * time.second); // Starting off, it should be initially random. 
 }
 
 

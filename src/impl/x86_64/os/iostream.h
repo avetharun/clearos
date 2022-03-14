@@ -14,6 +14,7 @@ namespace std {
     struct cout_t {
         //bool setVGACursorToPointer;
         private:
+        bool debug_mode;
         int _internal_cout_pointer = 0;
         // Runs the functions to ie. move cursor to pointer+1, set colour, etc.
         void pointer_func() {
@@ -37,12 +38,11 @@ namespace std {
             std::prnstr(arr, _internal_cout_pointer);
             _internal_cout_pointer += chars_to_print;
         }
-        void flush() {
-            _internal_cout_pointer = 0;
-        }
-        void set_loc(int loc) {
-            if (loc > std::D_TextSize) { return; }
+        void flush() {}
+        cout_t set_loc(int loc) {
+            if (loc > std::D_TextSize) { return *this; }
             _internal_cout_pointer = loc;
+            return *this;
         }
         // Print null-terminated string to ConsoleOut
         cout_t operator << (const char* arr) {
@@ -57,22 +57,36 @@ namespace std {
         }
         cout_t operator << (int num) {
             int _num_digits = digitsInNum(num) + (isNegative(num)) ? 1 : 0;
-            _internal_cout_pointer += std::prni(num, _internal_cout_pointer) + 1;
+            if (debug_mode) {
+                std::prni(std::loc(0,10), _num_digits);
+            }
+            _internal_cout_pointer += std::prni(num, _internal_cout_pointer+1);
             return *this;
         }
-        void operator = (int position) {
+        cout_t operator & (int debug_state) {
+            debug_mode = debug_state;
+            return *this;
+        }
+        cout_t operator % (int position) {
+            return this->operator=(position);
+        }
+        cout_t operator = (int position) {
             _internal_cout_pointer = position;
+            return *this;
         }
-        void operator += (int position) {
+        cout_t operator += (int position) {
             _internal_cout_pointer += position;
+            return *this;
         }
-        void operator -= (int position) {
+        cout_t operator -= (int position) {
             _internal_cout_pointer -= position;
+            return *this;
         }
-
     };
     cout_t cout;
 }
+
+
 
 
 

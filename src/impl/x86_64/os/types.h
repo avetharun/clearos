@@ -1,6 +1,4 @@
 #if !defined(CSTD_CLEAROS_TYPES_H)
-#define CSTD_CLEAROS_TYPES_H
-
 typedef unsigned char           uint8;
     typedef uint8  uint8_t ;
     typedef uint8 __u8;
@@ -34,11 +32,20 @@ typedef signed long long        sint64;
     typedef sint64 __s64;
     typedef sint64 s64;
 typedef long unsigned int size_t;
+#ifdef __cplusplus
 namespace std
 {
     typedef long unsigned int size_t;
 } // namespace std
+#else
 
+#define CSTD_CLEAROS_TYPES_H
+#define nullptr 0x0
+#define true 1
+#define false 0
+#define bool _Bool
+
+#endif
 
 typedef long int		        intptr_t;
 typedef unsigned long int	    uintptr_t;

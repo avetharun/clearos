@@ -53,10 +53,11 @@
         "xlocale": "cpp",
         "xlocinfo": "cpp",
         "xstddef": "cpp",
-        "except.h": "c",
-        "idt.h": "c",
+        "except.h": "cpp",
+        "idt.h": "cpp",
         "alloc.h": "c",
-        "stdarg.h": "c"
+        "stdarg.h": "cpp",
+        "stdbool.h": "c"
     },
     "C_Cpp.errorSquiggles": "Enabled"
 }

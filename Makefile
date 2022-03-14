@@ -12,9 +12,9 @@ x86_64_cxx_object_files := $(patsubst src/impl/x86_64/%.cpp, build/x86_64/%.o, $
 x86_64_asm_source_files := $(shell find src/impl/x86_64 -name *.asm)
 x86_64_asm_object_files := $(patsubst src/impl/x86_64/%.asm, build/x86_64/%.o, $(x86_64_asm_source_files))
 
-x86_64_object_files := $(x86_64_cxx_object_files) $(x86_64_c_object_files) $(x86_64_asm_object_files)
+x86_64_object_files := $(x86_64_asm_object_files) $(x86_64_c_object_files) $(x86_64_cxx_object_files) 
 
-default_flags := -nostdlib -pedantic -O2 -masm=att -fno-PIC -ffreestanding -mno-red-zone -nostdinc -mcmodel=kernel -mno-sse3 -mno-ssse3 -mno-sse4.1 -mno-sse4.2 -mno-sse4 -mno-sse4a -mno-3dnow -mno-avx -mno-avx2 -fno-stack-protector
+default_flags := -Wpointer-to-int-cast -fpermissive -nostdlib -pedantic -O2 -masm=att -fno-PIC -ffreestanding -mno-red-zone -nostdinc -mcmodel=kernel -mno-sse3 -mno-ssse3 -mno-sse4.1 -mno-sse4.2 -mno-sse4 -mno-sse4a -mno-3dnow -mno-avx -mno-avx2 -fno-stack-protector
 USE_SYSTEM_CSL=1
 $(kernel_object_files): build/kernel/%.o : src/impl/kernel/%.c
 	mkdir -p $(dir $@) && \

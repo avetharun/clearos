@@ -11,4 +11,4 @@ header_start:
     dw 0
     dw 0
     dw 8
-header_end;
+header_end:

@@ -1,9 +1,9 @@
-
 #ifndef _STDBOOL_H
 #define _STDBOOL_H
 
 #ifndef __cplusplus
 
+#define __C_COMPILED
 #define bool	_Bool
 #if defined __STDC_VERSION__ && __STDC_VERSION__ > 201710L
 #define true	((_Bool)+1u)
